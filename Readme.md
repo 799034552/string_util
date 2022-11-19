@@ -51,3 +51,31 @@ time.sleep(1)
 TIME.re_time(1, "训练结束", groud="train")
 TIME.show_time()
 ```
+# dataset
+## cityscapes
+```py
+from string_util.dataset.cityscape import Cityscape_dataset
+import torch
+
+city_data_load = Cityscape_dataset("./datasets/cityscapes", split="val")
+for i in range(city_data_load.__len__()):
+    img ,lbl, path = city_data_load.__getitem__(i)
+```
+## GTA
+```py
+from string_util.dataset.gta import GTA_dataset
+from tqdm import tqdm
+
+gta_data_load = GTA_dataset("./datasets/GTA5", split="train")
+for i in tqdm(range(gta_data_load.__len__())):
+    img ,lbl,path = gta_data_load.__getitem__(i)
+```
+## SYNTHIA
+```py
+from string_util.dataset.synthia import Synthia_dataset
+from tqdm import tqdm
+
+synthia_data_load = Synthia_dataset("./datasets/RAND_CITYSCAPES", split="train", mean=[0,0,0])
+for i in tqdm(range(synthia_data_load.__len__())):
+    img ,lbl = synthia_data_load.__getitem__(i)
+```
